@@ -5,7 +5,6 @@ const cors = require('cors');
 const routes = require('./routes/index.route');
 
 const app = express();
-
 // connect to MongoDB
 mongoose.connect(mongoose.get('db_uri'));
 
@@ -28,7 +27,7 @@ app.use(express.json());
 app.use('/api', routes);
 
 // error handling
-app.use((error, req, res, next) => {
+app.use((error, req, res) => {
   res.status(error.status || 500).json({
     status: Number(error.status) || 500,
     message: error.message
